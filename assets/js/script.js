@@ -1,4 +1,12 @@
-var codeQuiz = document.getElementById("startbutton");
+
+//Start Quiz button
+var startButton = document.getElementById ("startButton");
+startButton.addEventListener ('click', startGame);
+
+function startGame(){
+    
+}
+
 
 //Quiz Questions
 var quizQuestions = [
@@ -22,4 +30,4 @@ var quizQuestions = [
     options: ["1","2","3","4"],
     answer: "4"
 },
-];
+]; 
