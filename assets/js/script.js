@@ -1,11 +1,11 @@
 
 //Start Quiz button
 var startButton = document.getElementById ("startButton");
-startButton.addEventListener ('click', startGame);
 
-function startGame(){
-    
-}
+var startQuiz = document.getElementById ("quizBox");
+
+
+
 
 
 //Quiz Questions
@@ -31,3 +31,25 @@ var quizQuestions = [
     answer: "4"
 },
 ]; 
+
+function startGame(){
+    
+    var start = document.getElementById ("startingPage");
+    start.style.display = ("none"); 
+    nextQuestion();
+}
+
+function nextQuestion(){
+    
+var removeBarrier = document.getElementById("remove");
+removeBarrier.classList.remove('hide')
+startQuiz.style.display = ("block");
+    
+   
+}
+
+function selectAnswer (){
+
+}
+
+startButton.addEventListener ('click', startGame);
