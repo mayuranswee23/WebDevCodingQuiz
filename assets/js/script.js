@@ -3,6 +3,7 @@
 var startButton = document.getElementById ("startButton");
 
 var startQuiz = document.getElementById ("quizBox");
+var quizTime = document.getElementById ("time");
 
 
 
@@ -31,6 +32,24 @@ var quizQuestions = [
     answer: "4"
 },
 ]; 
+//time 
+var timer = 5;
+function startTime (){
+    var gameTime = setInterval(function(){
+
+        if (timer > 0){
+            quizTime.textContent = timer + " seconds left";
+        // decrease time
+        timer--; 
+        }
+        else {
+            timer.textContent = "";
+            clearInterval (startTime)
+            displayGameOver();
+        }     
+    }
+    ,1000
+    )}
 
 function startGame(){
     
@@ -40,16 +59,19 @@ function startGame(){
 }
 
 function nextQuestion(){
-    
+ startTime();   
 var removeBarrier = document.getElementById("remove");
 removeBarrier.classList.remove('hide')
-startQuiz.style.display = ("block");
-    
-   
+startQuiz.style.display = ("block"); 
 }
 
 function selectAnswer (){
 
 }
 
+function displayGameOver(){
+    window.alert ("Game Over");
+}
+
 startButton.addEventListener ('click', startGame);
+
