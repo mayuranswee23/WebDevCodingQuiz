@@ -11,6 +11,7 @@ var buttonA = document.getElementById ("a");
 var buttonB = document.getElementById ("b");
 var buttonC = document.getElementById ("c");
 var buttonD = document.getElementById ("d");
+var questionButtons = document.getElementById("questionButtons")
 
 
 
@@ -65,18 +66,37 @@ function startGame(){
 }
 
 function showQuestion (){
+    questionButtons.innerHTML = "" 
     var currentQuestion = quizQuestions[currentQuestionIndex];
    questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
-   buttonA.textContent = quizQuestions[0].options[0];
-   buttonB.textContent = quizQuestions[0].options[1];
-   buttonC.textContent = quizQuestions[0].options[2];
-   buttonD.textContent = quizQuestions[0].options[3];
+//    buttonA.textContent = currentQuestion.options[0];
+//    buttonB.textContent = currentQuestion.options[1];
+//    buttonC.textContent = currentQuestion.options[2];
+//    buttonD.textContent = currentQuestion.options[3];
 
-buttonA.addEventListener ('click', wrongAnswer);
-buttonB.addEventListener ('click', rightAnswer);
-buttonC.addEventListener ('click', wrongAnswer);
-buttonD.addEventListener ('click', wrongAnswer);
+for (var i = 0; i < currentQuestion.options.length; i++ ){
+    var button = document.createElement ("button");
+    button.textContent = currentQuestion.options [i];
+    button.classList.add ("choices");
+    questionButtons.appendChild (button);
+    button.addEventListener('click', function(){
+        checkAnswer(button.textContent);
+    })
+}
 
+
+// buttonA.addEventListener ('click', function(){
+//     checkAnswer(buttonA.textContent);
+// })
+// buttonB.addEventListener ('click', function(){
+//     checkAnswer(buttonB.textContent);
+// });
+// buttonC.addEventListener ('click', function(){
+//     checkAnswer(buttonC.textContent);
+// });
+// buttonD.addEventListener ('click', function(){
+//     checkAnswer(buttonD.textContent);
+// });
 
 
 }
@@ -90,38 +110,38 @@ startQuiz.style.display = ("block");
     showQuestion ();
 }
 
-function anotherQuestion (){
-    currentQuestionIndex++
-    var currentQuestion = quizQuestions[currentQuestionIndex];
-   questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
-   buttonA.textContent = quizQuestions[1].options[0];
-   buttonB.textContent = quizQuestions[1].options[1];
-   buttonC.textContent = quizQuestions[1].options[2];
-   buttonD.textContent = quizQuestions[1].options[3];
+// function anotherQuestion (){
+//     currentQuestionIndex++
+//     var currentQuestion = quizQuestions[currentQuestionIndex];
+//    questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
+//    buttonA.textContent = quizQuestions[1].options[0];
+//    buttonB.textContent = quizQuestions[1].options[1];
+//    buttonC.textContent = quizQuestions[1].options[2];
+//    buttonD.textContent = quizQuestions[1].options[3];
 
-buttonA.addEventListener ('click', wrongAnswerq);
-buttonB.addEventListener ('click', rightAnswerq);
-buttonC.addEventListener ('click', wrongAnswerq);
-buttonD.addEventListener ('click', wrongAnswerq);
-}
+// buttonA.addEventListener ('click', wrongAnswerq);
+// buttonB.addEventListener ('click', rightAnswerq);
+// buttonC.addEventListener ('click', wrongAnswerq);
+// buttonD.addEventListener ('click', wrongAnswerq);
+// }
 
-function setOfQuestions(){
-    currentQuestionIndex++
-    var currentQuestion = quizQuestions[2];
-   questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
-   buttonA.textContent = quizQuestions[2].options[0];
-   buttonB.textContent = quizQuestions[2].options[1];
-   buttonC.textContent = quizQuestions[2].options[2];
-   buttonD.textContent = quizQuestions[2].options[3];
+// function setOfQuestions(){
+//     currentQuestionIndex++
+//     var currentQuestion = quizQuestions[2];
+//    questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
+//    buttonA.textContent = quizQuestions[2].options[0];
+//    buttonB.textContent = quizQuestions[2].options[1];
+//    buttonC.textContent = quizQuestions[2].options[2];
+//    buttonD.textContent = quizQuestions[2].options[3];
 
-buttonA.addEventListener ('click', wrongAnswerw);
-buttonB.addEventListener ('click', rightAnswerw);
-buttonC.addEventListener ('click', wrongAnswerw);
-buttonD.addEventListener ('click', wrongAnswerw);
+// buttonA.addEventListener ('click', wrongAnswerw);
+// buttonB.addEventListener ('click', rightAnswerw);
+// buttonC.addEventListener ('click', wrongAnswerw);
+// buttonD.addEventListener ('click', wrongAnswerw);
 
-}
+// }
 
-function nextSetOfQuestions(){
+// function nextSetOfQuestions(){
     // currentQuestionIndex++
 //     var currentQuestion = quizQuestions[currentQuestionIndex];
 //    questionElement.innerHTML = "<h1>" + currentQuestion.question + "</h1>";
@@ -145,45 +165,65 @@ function nextSetOfQuestions(){
 //     timer = timer - 10;
 //     // nextSetOfQuestions();
 
-}
+
 
 function displayGameOver(){
     window.alert ("Game Over");
 }
 
-function rightAnswer(){
-    window.alert ('Correct')
-    anotherQuestion ();
+    function checkAnswer (answer){
+    if (answer === quizQuestions [currentQuestionIndex].answer){
+        currentQuestionIndex+=1
+        
+        console.log(currentQuestionIndex);
+        if (currentQuestionIndex === quizQuestions.length ){
+            displayGameOver();
+            
+        }
+        showQuestion();
+    } else {
+        currentQuestionIndex+=1
+        
+        if (currentQuestionIndex === quizQuestions.length ){
+            displayGameOver();
+        }
+        showQuestion();
+    }
 }
 
-function wrongAnswer() {
-    window.alert ('The answer is wrong')
-    timer = timer - 10;
-    anotherQuestion();
-}
+// function rightAnswer(){
+//     window.alert ('Correct')
+//     anotherQuestion ();
+// }
 
-function rightAnswerq(){
-    window.alert ('Correct')
-    setOfQuestions ();
-}
+// function wrongAnswer() {
+//     window.alert ('The answer is wrong')
+//     timer = timer - 10;
+//     anotherQuestion();
+// }
 
-function wrongAnswerq() {
-    window.alert ('The answer is wrong')
-    timer = timer - 10;
-    setOfQuestions();
-}
+// function rightAnswerq(){
+//     window.alert ('Correct')
+//     setOfQuestions ();
+// }
 
-function rightAnswerw(){
-    window.alert ('Correct')
+// function wrongAnswerq() {
+//     window.alert ('The answer is wrong')
+//     timer = timer - 10;
+//     setOfQuestions();
+// }
+
+// function rightAnswerw(){
+//     window.alert ('Correct')
     
-    window.alert ("Your score is " + timer);
-}
+//     window.alert ("Your score is " + timer);
+// }
 
-function wrongAnswerw() {
-    window.alert ('The answer is wrong')
-    timer = timer - 10;
-    window.alert ("Your score is " + timer);
+// function wrongAnswerw() {
+//     window.alert ('The answer is wrong')
+//     timer = timer - 10;
+//     window.alert ("Your score is " + timer);
     
-}
+
 startButton.addEventListener ('click', startGame);
 

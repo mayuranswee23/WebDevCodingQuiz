@@ -76,7 +76,7 @@ body {
     margin: 20px;
 }
 
-#a, #b, #c, #d{
+.choices {
     color: #000000;
     background-color: rgb(174, 39, 174); 
     padding: 10px;
