@@ -5,4 +5,4 @@
 
 ![1](https://user-images.githubusercontent.com/81788122/118428719-134f8a80-b69e-11eb-89a2-24f52ac42bc5.PNG)
 
-
+## link to deployed application: https://mayuranswee23.github.io/WebDevCodingQuiz/
