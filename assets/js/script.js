@@ -40,7 +40,7 @@ var quizQuestions = [
 },
 ]; 
 //time 
-var timer = 20;
+var timer = 50;
 function startTime (){
     var gameTime = setInterval(function(){
 
@@ -165,29 +165,33 @@ startQuiz.style.display = ("block");
 //     timer = timer - 10;
 //     // nextSetOfQuestions();
 
-
+function subtractTime(){
+    timer = timer -5;
+}
 
 function displayGameOver(){
     window.alert ("Game Over");
+    window.alert ("Your score is " + timer)
 }
 
     function checkAnswer (answer){
-    if (answer === quizQuestions [currentQuestionIndex].answer){
+    if (answer === quizQuestions[currentQuestionIndex].answer){
         currentQuestionIndex+=1
         
-        console.log(currentQuestionIndex);
+        window.alert ("Correct")
         if (currentQuestionIndex === quizQuestions.length ){
-            displayGameOver();
-            
+            displayGameOver();   
         }
         showQuestion();
     } else {
         currentQuestionIndex+=1
+        window.alert ("wrong")
         
         if (currentQuestionIndex === quizQuestions.length ){
             displayGameOver();
-        }
+        };
         showQuestion();
+        subtractTime ();
     }
 }
 
